@@ -86,6 +86,4 @@ test:
 
 production:
   <<: *default
-  database: electretri_production
-  username: electretri
-  password: <%= ENV['ELECTRETRI_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
