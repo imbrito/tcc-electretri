@@ -28,6 +28,15 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  # https://github.com/plataformatec/devise/wiki/How-To:-Stub-authentication-in-controller-specs
+  # If you're using RSpec, you can put the following inside a file named spec/support/devise.rb 
+  # or in your spec/spec_helper.rb (or spec/rails_helper.rb if you are using rspec-rails)
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
+  config.include Warden::Test::Helpers, type: :view
+  Devise.stretches = 1
+
   Rails.logger.level = 4
   config.include Capybara::DSL
 

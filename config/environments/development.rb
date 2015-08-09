@@ -9,6 +9,11 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # Ensure you have defined default url options in your environments files. Here
+  # is an example of default_url_options appropriate for a development environment
+  # in config/environments/development.rb:
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

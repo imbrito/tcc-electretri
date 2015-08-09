@@ -30,6 +30,11 @@
           	<li class="active"><a class="glyphicon glyphicon-home" href="/index">Home</a></li>
           	<li><a href="/about">About</a></li>
           	<li><a href="/team">Team</a></li>
+            <li>
+              <% if user_signed_in? %>
+                <%= link_to "logout", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-log-out" %>
+              <% end %>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
