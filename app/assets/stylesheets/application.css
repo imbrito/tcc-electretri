@@ -14,3 +14,14 @@
  *= require_self
  *= require bootstrap_and_overrides
  */
+.form-horizontal {  
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
+.table.table-striped {  
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
