@@ -1,39 +1,38 @@
 class CriterionsController < InheritedResources::Base
   respond_to :html
+  before_filter :get_project
+
+  def get_project
+  	@project = Project.find params[:project_id]
+  end
 
   def index
-  	@project = Project.find params[:project_id]
-    @criterions = Criterion.where(:project_id => params[:project_id]).order(:created_at)
+    @criterions = @project.criterions.order(:created_at)
     respond_to do |format|
       format.html
     end
   end
 
   def show
-  	@project = Project.find params[:project_id]
-    @criterion = Criterion.find params[:id]
+    @criterion = @project.criterions.find params[:id]
     respond_to do |format|
       format.html
     end
   end
 
   def new
-  	@project = Project.find params[:project_id]
-    @criterion = Criterion.new
+    @criterion = @project.criterions.new
     respond_with @criterion
   end
 
   def edit
-    @project = Project.find params[:project_id]
-    @criterion = Criterion.find params[:id]
+    @criterion = @project.criterions.find params[:id]
     respond_with @criterion
   end
 
   def create
-  	@project = Project.find params[:project_id]
-    @criterion = Criterion.create(criterion_params)
+    @criterion = @project.criterions.create(criterion_params)
     if @criterion.valid?
-      @criterion.project_id = params[:project_id]
       respond_to do |format|
         if @criterion.save
           format.html { redirect_to action: 'index' }
@@ -45,14 +44,10 @@ class CriterionsController < InheritedResources::Base
   end
 
   def update
-  	@project = Project.find params[:project_id]
-    @criterion = Criterion.find params[:id]
-    @criterion.update_attributes(criterion_params)
-    if @criterion.valid?
+    @criterion = @project.criterions.find params[:id]
+    if @criterion.update_attributes(criterion_params)
       respond_to do |format|
-        if @criterion.save
-          format.html { redirect_to action: 'index' }
-        end
+        format.html { redirect_to action: 'index' }
       end
     else
       render :edit
@@ -60,8 +55,7 @@ class CriterionsController < InheritedResources::Base
   end
 
   def destroy
-  	@project = Project.find params[:project_id]
-    @criterion = Criterion.find params[:id]
+    @criterion = @project.criterions.find params[:id]
     respond_to do |format|
       if @criterion.destroy
         format.html { redirect_to action: 'index' }

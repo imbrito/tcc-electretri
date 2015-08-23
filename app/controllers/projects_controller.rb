@@ -42,12 +42,9 @@ class ProjectsController < InheritedResources::Base
 
   def update
     @project = Project.find params[:id]
-    @project.update_attributes(project_params)
-    if @project.valid?
+    if @project.update_attributes(project_params)
       respond_to do |format|
-        if @project.save
-          format.html { redirect_to action: 'index' }
-        end
+        format.html { redirect_to action: 'index' }
       end
     else
       render :edit
