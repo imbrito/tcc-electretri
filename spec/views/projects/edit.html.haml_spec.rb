@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "projects/edit", type: :view do
   before(:each) do
-    @project = assign(:project, Project.create!(
-      :name => "MyString",
-      :description => "MyText",
-      :cut => 1.5,
-    ))
+    @project = assign(:proj, FactoryGirl.create(:project))
   end
 
   it "renders the edit project form" do

@@ -1,5 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :user
+  has_many :criterions, :dependent => :destroy
+  validates :name, :description, presence: true
+  validates :cut, inclusion: { in: 0.5..1 }
 
   CUT = %w[0.50 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59
   		0.60 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69

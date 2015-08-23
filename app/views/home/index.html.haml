@@ -1,11 +1,6 @@
 %h1 Electre TRI APP
 %p Sistema Web de Apoio à Decisão Multicritério, Baseado no Algoritmo ELECTRE TRI
-- count = 0
-- if !@projects.eql?(nil)
-  - @projects.each do |project|
-    - if project.user_id.eql?(current_user.id)
-      - count += 1
-%p Projects: #{count}. 
-- if count > 0
+%p Projects: #{@count}. 
+- if !@count.eql?(0)
   =link_to 'View Projects', projects_path, :class => "btn btn-info"
 =link_to 'Create a new Project', new_project_path, :class => "btn btn-primary"

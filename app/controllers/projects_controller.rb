@@ -2,7 +2,7 @@ class ProjectsController < InheritedResources::Base
   respond_to :html
 
   def index
-    @projects = Project.all
+    @projects = Project.where(:user_id => current_user.id).order(:created_at)
     respond_to do |format|
       format.html
     end
@@ -10,6 +10,7 @@ class ProjectsController < InheritedResources::Base
 
   def show
     @project = Project.find params[:id]
+    @count = Criterion.where(:project_id => @project.id).count
     respond_to do |format|
       format.html
     end
@@ -26,20 +27,37 @@ class ProjectsController < InheritedResources::Base
   end
 
   def create
-    @project = Project.create!(project_params)
-    @project.user_id = current_user.id
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to action: 'index' }
+    @project = Project.create(project_params)
+    if @project.valid?
+      @project.user_id = current_user.id
+      respond_to do |format|
+        if @project.save
+          format.html { redirect_to action: 'index' }
+        end
       end
+    else
+      render :new
     end
   end
 
   def update
     @project = Project.find params[:id]
+    @project.update_attributes(project_params)
+    if @project.valid?
+      respond_to do |format|
+        if @project.save
+          format.html { redirect_to action: 'index' }
+        end
+      end
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @project = Project.find params[:id]
     respond_to do |format|
-      @project.update_attributes(project_params)
-      if @project.save
+      if @project.destroy
         format.html { redirect_to action: 'index' }
       end
     end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :projects
+  resources :projects do
+    resources :criterions, only: [:index, :new, :create, :edit, :update, :destroy]
+  end
   devise_for :users
   
   get '/index' => 'home#index', :as => :index

@@ -1,0 +1,15 @@
+= simple_form_for([@project, @criterion], :html => { :class => 'form-horizontal' }) do |f|
+  = f.input :name
+  = error_span(@criterion[:name])
+  = f.input :weigth, input_html: { min: 0 }
+  = error_span(@criterion[:weigth])
+  = f.input :preference, input_html: { min: 0 }
+  = error_span(@criterion[:preference])
+  = f.input :indifference, input_html: { min: 0 }
+  = error_span(@criterion[:indifference])
+  = f.input :veto, input_html: { min: 0 }
+  = error_span(@criterion[:veto])
+  = f.input :direction, collection: %w[Up Down], as: :radio_buttons, checked: 'Up'
+  = error_span(@criterion[:direction])
+  = f.button :submit, :class => 'btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), project_criterions_path, :class => 'btn btn-default'

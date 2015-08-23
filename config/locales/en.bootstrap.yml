@@ -11,11 +11,14 @@ en:
     actions: "Actions"
     links:
       back: "Back"
+      back_project: "Back to Project"
       cancel: "Cancel"
       confirm: "Are you sure?"
       destroy: "Delete"
       new: "New"
+      new_criterion: "New Criterion"
       edit: "Edit"
+      index_criterion: "View Criterions"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
