@@ -33,8 +33,8 @@ class CriterionsController < InheritedResources::Base
   def create
     @criterion = @project.criterions.create(criterion_params)
     if @criterion.valid?
-      respond_to do |format|
-        if @criterion.save
+      if @criterion.save
+      	respond_to do |format|
           format.html { redirect_to action: 'index' }
         end
       end
@@ -56,8 +56,8 @@ class CriterionsController < InheritedResources::Base
 
   def destroy
     @criterion = @project.criterions.find params[:id]
-    respond_to do |format|
-      if @criterion.destroy
+    if @criterion.destroy
+      respond_to do |format|
         format.html { redirect_to action: 'index' }
       end
     end
