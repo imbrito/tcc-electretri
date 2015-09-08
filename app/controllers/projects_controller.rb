@@ -15,7 +15,6 @@ class ProjectsController < InheritedResources::Base
 
   def show
     @project = @user.projects.find params[:id]
-    @count = Criterion.where(:project_id => @project.id).count
     respond_to do |format|
       format.html
     end

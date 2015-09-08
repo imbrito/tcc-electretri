@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
   let(:admin) { FactoryGirl.create(:admin) }
 
   it "create user" do
-    expect("user@test.com").to eq(user.email)
     expect("torvalds").to eq(user.password)
     expect("user").to eq(user.role.name)
   end

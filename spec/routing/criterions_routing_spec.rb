@@ -11,10 +11,6 @@ RSpec.describe CriterionsController, type: :routing do
       expect(:get => "/projects/1/criterions/new").to route_to("criterions#new", :project_id => "1")
     end
 
-    #it "routes to #show" do
-    #  expect(:get => "/projects/1/criterions/1").to route_to("criterions#show", :project_id => "1", :id => "1")
-    #end
-
     it "routes to #edit" do
       expect(:get => "/projects/1/criterions/1/edit").to route_to("criterions#edit", :project_id => "1", :id => "1")
     end

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819221200) do
+ActiveRecord::Schema.define(version: 20150907143739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "criterions", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +30,28 @@ ActiveRecord::Schema.define(version: 20150819221200) do
   end
 
   add_index "criterions", ["project_id"], name: "index_criterions_on_project_id", using: :btree
+
+  create_table "performances", force: :cascade do |t|
+    t.float    "value"
+    t.integer  "criterion_id"
+    t.integer  "performable_id"
+    t.string   "performable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "performances", ["criterion_id"], name: "index_performances_on_criterion_id", using: :btree
+  add_index "performances", ["performable_type", "performable_id"], name: "index_performances_on_performable_type_and_performable_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "profiles", ["project_id"], name: "index_profiles_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -68,6 +91,8 @@ ActiveRecord::Schema.define(version: 20150819221200) do
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "criterions", "projects"
+  add_foreign_key "performances", "criterions"
+  add_foreign_key "profiles", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "users", "roles"
 end

@@ -3,7 +3,7 @@ class CriterionsController < InheritedResources::Base
   before_filter :get_project
 
   def get_project
-  	@project = Project.find params[:project_id]
+  	@project = Project.includes(:profiles).find params[:project_id]
   end
 
   def index
@@ -34,6 +34,7 @@ class CriterionsController < InheritedResources::Base
     @criterion = @project.criterions.create(criterion_params)
     if @criterion.valid?
       if @criterion.save
+        create_performance_if_exists_profiles_or_alternatives
       	respond_to do |format|
           format.html { redirect_to action: 'index' }
         end
@@ -65,7 +66,13 @@ class CriterionsController < InheritedResources::Base
   private
 
     def criterion_params
-      params.require(:criterion).permit(:name, :weigth, :preference, :indifference, :veto, :direction, :project_id)
+      params.require(:criterion).permit(:name, :weigth, :preference, :indifference, :veto, :direction)
+    end
+
+    def create_performance_if_exists_profiles_or_alternatives
+      if !@project.profiles.count.eql?(0)
+        @project.profiles.each { |profile| profile.performances.build(value: 0, criterion: @criterion).save }
+      end
     end
 end
 

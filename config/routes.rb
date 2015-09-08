@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
   resources :projects do
-    resources :criterions, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :criterions, except: [:show]
+    resources :profiles do 
+      resources :performances, only: [:edit, :update]
+    end
   end
   devise_for :users
   
