@@ -1,0 +1,18 @@
+- model_class = Performance
+.page-header
+  %h3=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:value)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @profile.performances.each do |performance|
+      %tr
+        %td= performance.criterion.name
+        %td= performance.value
+        %td= performance.created_at.asctime
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_profile_performance_path(@profile.project, @profile, performance), :class => 'btn btn-info btn-xs'
