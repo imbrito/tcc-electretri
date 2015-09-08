@@ -2,5 +2,4 @@
   = f.input :value
   = error_span(@performance[:value])
   = f.button :submit, :class => 'btn-primary'
-  - if @performance[:performable_type].eql?('Profile')
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), project_profile_path(@project, @performable), :class => 'btn btn-default'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), polymorphic_url([@project, @performable]), :class => 'btn btn-default'

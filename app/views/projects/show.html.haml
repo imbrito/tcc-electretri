@@ -29,5 +29,5 @@
   .page-header
     %h3 Profiles
   - if !@project.profiles.count.eql?(0)
-    =link_to t('.view', :default => t("helpers.links.index_criterion")), project_profiles_path(@project), :class => "btn btn-info"
-  = link_to t('.new', :default => t("helpers.links.new_criterion")), new_project_profile_path(@project), :class => 'btn btn-primary'
+    =link_to t('.view', :default => t("helpers.links.index_profile")), project_profiles_path(@project), :class => "btn btn-info"
+  = link_to t('.new', :default => t("helpers.links.new_profile")), new_project_profile_path(@project), :class => 'btn btn-primary'

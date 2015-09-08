@@ -3,7 +3,7 @@ class ProfilesController < InheritedResources::Base
   before_filter :get_project
 
   def get_project
-  	@project = Project.includes(:criterions).find params[:project_id]
+  	@project = Project.includes([:criterions,:profiles]).find params[:project_id]
   end
 
   def index
@@ -14,7 +14,7 @@ class ProfilesController < InheritedResources::Base
   end
 
   def show
-    @performable = @project.profiles.find params[:id]
+    @performable = @project.profiles.includes(:performances).find params[:id]
     respond_to do |format|
       format.html
     end
@@ -36,7 +36,7 @@ class ProfilesController < InheritedResources::Base
       if @profile.save
       	@project.criterions.each { |criterion| @profile.performances.build(value: 0, criterion: criterion).save }
       	respond_to do |format|
-          format.html { redirect_to action: 'show' }
+          format.html { redirect_to project_profile_path(@project, @profile) }
         end
       end
     else

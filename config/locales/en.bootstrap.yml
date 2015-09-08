@@ -17,8 +17,10 @@ en:
       destroy: "Delete"
       new: "New"
       new_criterion: "New Criterion"
+      new_profile: "New Profile"
       edit: "Edit"
       index_criterion: "View Criterions"
+      index_profile: "View Profiles"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"

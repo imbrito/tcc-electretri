@@ -11,9 +11,7 @@ class PerformancesController < InheritedResources::Base
     @performance = @performable.performances.find params[:id]
     if @performance.update_attributes(performance_params)
       respond_to do |format|
-      	if @performance[:performable_type].eql?('Profile')
-        	format.html { redirect_to project_profile_path(@project, @performable) }
-        end
+      	format.html { redirect_to polymorphic_url([@project, @performable]) }
       end
     else
       render :edit
