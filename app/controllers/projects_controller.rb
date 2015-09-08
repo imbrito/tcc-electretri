@@ -7,7 +7,7 @@ class ProjectsController < InheritedResources::Base
   end
 
   def index
-    @projects = @user.projects.order(:created_at)
+    @projects = @user.projects.order(updated_at: :desc)
     respond_to do |format|
       format.html
     end

@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   end
   def index
   	@count = @user.projects.count
+    @projects = @user.projects.order(updated_at: :desc).limit(5)
   end
 
   def about
