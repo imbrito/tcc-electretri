@@ -9,10 +9,10 @@
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
-    - @profile.performances.each do |performance|
+    - @performable.performances.each do |performance|
       %tr
         %td= performance.criterion.name
         %td= performance.value
         %td= performance.created_at.asctime
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_profile_performance_path(@profile.project, @profile, performance), :class => 'btn btn-info btn-xs'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_profile_performance_path(@performable.project, @performable, performance), :class => 'btn btn-info btn-xs'

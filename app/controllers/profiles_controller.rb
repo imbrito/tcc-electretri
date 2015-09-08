@@ -14,7 +14,7 @@ class ProfilesController < InheritedResources::Base
   end
 
   def show
-    @profile = @project.profiles.find params[:id]
+    @performable = @project.profiles.find params[:id]
     respond_to do |format|
       format.html
     end
