@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :criterions, :dependent => :destroy
   has_many :profiles, :dependent => :destroy
+  has_many :alternatives, :dependent => :destroy
   validates :name, :description, presence: true
   validates :cut, inclusion: { in: 0.5..1 }
 

@@ -3,6 +3,6 @@
 - if !@count.eql?(0)
 	%p View the last projects, limited the five.
 	= render :template => 'projects/index'
-	=link_to 'All Projects', projects_path, :class => "btn btn-info"
+	=link_to t('.view', :default => t("helpers.links.index_project")), projects_path, :class => "btn btn-info"
 - else
-	=link_to 'Create a new Project', new_project_path, :class => "btn btn-primary"
+	=link_to t('.new', :default => t("helpers.links.new_project")), new_project_path, :class => "btn btn-primary"

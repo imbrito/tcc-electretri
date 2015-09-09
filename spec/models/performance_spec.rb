@@ -1,11 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Performance, type: :model do
-  let(:performance) { FactoryGirl.create(:performance) }
-  it "create performance" do
-    expect(1.5).to eq(performance.value)
-    expect("Criterion 01").to eq(performance.criterion.name)
-    expect("Profile A").to eq(performance.performable.name)
-    expect("Profile").to eq(performance.performable_type)
+  let(:performance_profile) { FactoryGirl.create(:performance_profile) }
+  it "create performance to Profile" do
+    expect(1.5).to eq(performance_profile.value)
+    expect("Criterion 01").to eq(performance_profile.criterion.name)
+    expect("Profile A").to eq(performance_profile.performable.name)
+    expect("Profile").to eq(performance_profile.performable_type)
+  end
+
+  let(:performance_alternative) { FactoryGirl.create(:performance_alternative) }
+  it "create performance to Alternative" do
+    expect(2.5).to eq(performance_alternative.value)
+    expect("Criterion 01").to eq(performance_alternative.criterion.name)
+    expect("Alternative A").to eq(performance_alternative.performable.name)
+    expect("Alternative").to eq(performance_alternative.performable_type)
   end
 end

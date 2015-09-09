@@ -25,7 +25,7 @@ class PerformancesController < InheritedResources::Base
 
     def get_performable
     	@project = Project.find params[:project_id]
-    	klass = [Profile].detect{|c| params["#{c.name.underscore}_id"]}
+    	klass = [Profile, Alternative].detect{|c| params["#{c.name.underscore}_id"]}
       @performable = klass.find params["#{klass.name.underscore}_id"]
     end
 end

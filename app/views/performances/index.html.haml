@@ -15,4 +15,4 @@
         %td= performance.value
         %td= performance.created_at.asctime
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_profile_performance_path(@performable.project, @performable, performance), :class => 'btn btn-info btn-xs'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_polymorphic_url([@performable.project, @performable, performance]), :class => 'btn btn-info btn-xs'

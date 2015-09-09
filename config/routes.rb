@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :profiles do 
       resources :performances, only: [:edit, :update]
     end
+    resources :alternatives do 
+      resources :performances, only: [:edit, :update]
+    end
   end
   devise_for :users
   

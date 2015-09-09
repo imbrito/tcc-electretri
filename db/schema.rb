@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907143739) do
+ActiveRecord::Schema.define(version: 20150909030804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "alternatives", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "alternatives", ["project_id"], name: "index_alternatives_on_project_id", using: :btree
 
   create_table "criterions", force: :cascade do |t|
     t.string   "name"
@@ -90,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150907143739) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
+  add_foreign_key "alternatives", "projects"
   add_foreign_key "criterions", "projects"
   add_foreign_key "performances", "criterions"
   add_foreign_key "profiles", "projects"

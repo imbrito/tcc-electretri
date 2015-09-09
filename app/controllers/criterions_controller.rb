@@ -3,7 +3,7 @@ class CriterionsController < InheritedResources::Base
   before_filter :get_project
 
   def get_project
-  	@project = Project.includes(:profiles).find params[:project_id]
+  	@project = Project.includes([:profiles,:alternatives]).find params[:project_id]
   end
 
   def index
@@ -72,6 +72,9 @@ class CriterionsController < InheritedResources::Base
     def create_performance_if_exists_profiles_or_alternatives
       if !@project.profiles.count.eql?(0)
         @project.profiles.each { |profile| profile.performances.build(value: 0, criterion: @criterion).save }
+      end
+      if !@project.alternatives.count.eql?(0)
+        @project.alternatives.each { |alternative| alternative.performances.build(value: 0, criterion: @criterion).save }
       end
     end
 end

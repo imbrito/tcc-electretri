@@ -31,3 +31,10 @@
   - if !@project.profiles.count.eql?(0)
     =link_to t('.view', :default => t("helpers.links.index_profile")), project_profiles_path(@project), :class => "btn btn-info"
   = link_to t('.new', :default => t("helpers.links.new_profile")), new_project_profile_path(@project), :class => 'btn btn-primary'
+
+- if !(@project.criterions.count.eql?(0) || @project.profiles.count.eql?(0))
+  .page-header
+    %h3 Alternatives
+  - if !@project.alternatives.count.eql?(0)
+    =link_to t('.view', :default => t("helpers.links.index_alternative")), project_alternatives_path(@project), :class => "btn btn-info"
+  = link_to t('.new', :default => t("helpers.links.new_alternative")), new_project_alternative_path(@project), :class => 'btn btn-primary'
