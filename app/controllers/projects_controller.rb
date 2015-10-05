@@ -2,10 +2,6 @@ class ProjectsController < InheritedResources::Base
   respond_to :html
   before_filter :get_user
 
-  def get_user
-    @user = current_user 
-  end
-
   def index
     @projects = @user.projects.order(updated_at: :desc)
     respond_to do |format|
@@ -14,7 +10,10 @@ class ProjectsController < InheritedResources::Base
   end
 
   def show
-    @project = @user.projects.find params[:id]
+    @project = @user.projects.includes([:criterions,:profiles,:alternatives]).find params[:id]
+    @criterions = @project.criterions
+    @profiles = @project.profiles
+    @alternatives = @project.alternatives
     respond_to do |format|
       format.html
     end
@@ -66,6 +65,10 @@ class ProjectsController < InheritedResources::Base
 
     def project_params
       params.require(:project).permit(:name, :description, :cut)
+    end
+
+    def get_user
+      @user = current_user 
     end
 end
 

@@ -19,22 +19,26 @@
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_path(@project), :class => 'btn btn-default'
 = link_to t('.destroy', :default => t("helpers.links.destroy")), project_path(@project), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 
-.page-header
-  %h3 Criterions
-- if !@project.criterions.count.eql?(0)
-  =link_to t('.view', :default => t("helpers.links.index_criterion")), project_criterions_path(@project), :class => "btn btn-info"
-= link_to t('.new', :default => t("helpers.links.new_criterion")), new_project_criterion_path(@project), :class => 'btn btn-primary'
-
-- if !@project.criterions.count.eql?(0)
+- if @project.criterions.present?
+  = render :template => 'criterions/index' 
+- else
   .page-header
-    %h3 Profiles
-  - if !@project.profiles.count.eql?(0)
-    =link_to t('.view', :default => t("helpers.links.index_profile")), project_profiles_path(@project), :class => "btn btn-info"
-  = link_to t('.new', :default => t("helpers.links.new_profile")), new_project_profile_path(@project), :class => 'btn btn-primary'
+    %h2 Criterions
+  = link_to t('.new', :default => t("helpers.links.new_criterion")), new_project_criterion_path(@project), :class => 'btn btn-primary'
 
-- if !(@project.criterions.count.eql?(0) || @project.profiles.count.eql?(0))
-  .page-header
-    %h3 Alternatives
-  - if !@project.alternatives.count.eql?(0)
-    =link_to t('.view', :default => t("helpers.links.index_alternative")), project_alternatives_path(@project), :class => "btn btn-info"
-  = link_to t('.new', :default => t("helpers.links.new_alternative")), new_project_alternative_path(@project), :class => 'btn btn-primary'
+- if @project.profiles.present?
+  = render :template => 'profiles/index'
+- else
+  - if @project.criterions.present?
+    .page-header
+      %h2 Profiles
+    = link_to t('.new', :default => t("helpers.links.new_profile")), new_project_profile_path(@project), :class => 'btn btn-primary'
+  
+
+- if @project.alternatives.present?
+  = render :template => 'alternatives/index'
+- else
+  - if @project.criterions.present? && @project.profiles.present?
+    .page-header
+      %h2 Alternatives
+    = link_to t('.new', :default => t("helpers.links.new_alternative")), new_project_alternative_path(@project), :class => 'btn btn-primary'

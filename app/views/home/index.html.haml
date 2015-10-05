@@ -1,8 +1,8 @@
 %h1 Electre TRI APP
 %p Sistema Web de Apoio à Decisão Multicritério, Baseado no Algoritmo ELECTRE TRI
-- if !@count.eql?(0)
-	%p View the last projects, limited the five.
+- if @projects.present?
 	= render :template => 'projects/index'
-	=link_to t('.view', :default => t("helpers.links.index_project")), projects_path, :class => "btn btn-info"
+	.pager
+		= will_paginate @projects, renderer: BootstrapPagination::Rails
 - else
 	=link_to t('.new', :default => t("helpers.links.new_project")), new_project_path, :class => "btn btn-primary"

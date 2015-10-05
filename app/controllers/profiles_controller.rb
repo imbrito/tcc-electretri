@@ -2,10 +2,6 @@ class ProfilesController < InheritedResources::Base
   respond_to :html
   before_filter :get_project
 
-  def get_project
-  	@project = Project.includes([:criterions,:profiles]).find params[:project_id]
-  end
-
   def index
     @profiles = @project.profiles.order(:created_at)
     respond_to do |format|
@@ -36,7 +32,7 @@ class ProfilesController < InheritedResources::Base
       if @profile.save
       	@project.criterions.each { |criterion| @profile.performances.build(value: 0, criterion: criterion).save }
       	respond_to do |format|
-          format.html { redirect_to project_profile_path(@project, @profile) }
+          format.html { redirect_to project_path(@project) }
         end
       end
     else
@@ -48,7 +44,7 @@ class ProfilesController < InheritedResources::Base
     @profile = @project.profiles.find params[:id]
     if @profile.update_attributes(profile_params)
       respond_to do |format|
-        format.html { redirect_to action: 'index' }
+        format.html { redirect_to project_path(@project) }
       end
     else
       render :edit
@@ -59,7 +55,7 @@ class ProfilesController < InheritedResources::Base
     @profile = @project.profiles.find params[:id]
     if @profile.destroy
       respond_to do |format|
-        format.html { redirect_to action: 'index' }
+        format.html { redirect_to project_path(@project) }
       end
     end
   end
@@ -67,6 +63,10 @@ class ProfilesController < InheritedResources::Base
 
     def profile_params
       params.require(:profile).permit(:name, :description)
+    end
+
+    def get_project
+      @project = Project.includes([:criterions,:profiles]).find params[:project_id]
     end
 end
 

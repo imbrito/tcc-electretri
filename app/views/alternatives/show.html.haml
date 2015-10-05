@@ -11,7 +11,7 @@
   %br
   = @performable.description
 
-= link_to t('.back', :default => t("helpers.links.back")), project_alternatives_path, :class => 'btn btn-default'
+= link_to t('.back', :default => t("helpers.links.back")), project_path(@performable.project), :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_alternative_path(@performable.project, @performable), :class => 'btn btn-default'
 = link_to t('.destroy', :default => t("helpers.links.destroy")), project_alternative_path(@performable.project, @performable), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 

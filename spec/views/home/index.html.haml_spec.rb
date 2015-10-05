@@ -7,6 +7,7 @@ RSpec.describe "home/index.html.haml", type: :view do
     :cut => 0.75, :user_id => user.id) }
   before(:each) do
     allow(controller).to receive(:current_user){ user }
+    allow(view).to receive_messages(:will_paginate => nil)
     assign(:projects, [ project ])
   end
   it "visit home#index" do 

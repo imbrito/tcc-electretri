@@ -6,8 +6,7 @@ class HomeController < ApplicationController
   	@user = current_user
   end
   def index
-  	@count = @user.projects.count
-    @projects = @user.projects.order(updated_at: :desc).limit(5)
+    @projects = @user.projects.paginate(:page => params[:page], :per_page => 5).order(updated_at: :desc)
   end
 
   def about

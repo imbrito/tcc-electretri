@@ -2,10 +2,6 @@ class CriterionsController < InheritedResources::Base
   respond_to :html
   before_filter :get_project
 
-  def get_project
-  	@project = Project.includes([:profiles,:alternatives]).find params[:project_id]
-  end
-
   def index
     @criterions = @project.criterions.order(:created_at)
     respond_to do |format|
@@ -36,7 +32,7 @@ class CriterionsController < InheritedResources::Base
       if @criterion.save
         create_performance_if_exists_profiles_or_alternatives
       	respond_to do |format|
-          format.html { redirect_to action: 'index' }
+          format.html { redirect_to project_path(@project) }
         end
       end
     else
@@ -48,7 +44,7 @@ class CriterionsController < InheritedResources::Base
     @criterion = @project.criterions.find params[:id]
     if @criterion.update_attributes(criterion_params)
       respond_to do |format|
-        format.html { redirect_to action: 'index' }
+        format.html { redirect_to project_path(@project) }
       end
     else
       render :edit
@@ -59,7 +55,7 @@ class CriterionsController < InheritedResources::Base
     @criterion = @project.criterions.find params[:id]
     if @criterion.destroy
       respond_to do |format|
-        format.html { redirect_to action: 'index' }
+        format.html { redirect_to project_path(@project) }
       end
     end
   end
@@ -67,6 +63,10 @@ class CriterionsController < InheritedResources::Base
 
     def criterion_params
       params.require(:criterion).permit(:name, :weigth, :preference, :indifference, :veto, :direction)
+    end
+
+    def get_project
+      @project = Project.includes([:profiles,:alternatives]).find params[:project_id]
     end
 
     def create_performance_if_exists_profiles_or_alternatives
