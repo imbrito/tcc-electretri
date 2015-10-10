@@ -45,6 +45,9 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.fuubar_progress_bar_options = { :format => 'ElectreTri APP! %a %bᗧ%i %p%% %t',
+    :progress_mark  => ' ', :remainder_mark => '･', :starting_at => 0 }
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

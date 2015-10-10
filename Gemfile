@@ -130,6 +130,9 @@ group :development, :test do
   # RSpec for Rails
   gem 'rspec-rails', '~> 3.3.3'
 
+  # the instafailing RSpec progress bar formatter
+  gem 'fuubar', '~> 2.0.0'
+
   # factory_girl_rails provides integration between factory_girl and rails 3 (currently just automatic factory definition loading)
   gem 'factory_girl_rails', '~> 4.5.0'
   
