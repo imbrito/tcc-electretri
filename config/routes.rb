@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :projects do
-    resources :criterions, except: [:show]
-    resources :profiles do 
+  resources :projects, except: [:index] do
+    resources :criterions, except: [:index, :show]
+    resources :profiles, except: [:index] do 
       resources :performances, only: [:edit, :update]
     end
-    resources :alternatives do 
+    resources :alternatives, except: [:index] do 
       resources :performances, only: [:edit, :update]
     end
   end

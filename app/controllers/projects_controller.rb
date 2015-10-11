@@ -34,7 +34,7 @@ class ProjectsController < InheritedResources::Base
     if @project.valid?
       if @project.save
         respond_to do |format|
-          format.html { redirect_to action: 'index' }
+          format.html { redirect_to project_path(@project) }
         end
       end
     else
@@ -46,7 +46,7 @@ class ProjectsController < InheritedResources::Base
     @project = @user.projects.find params[:id]
     if @project.update_attributes(project_params)
       respond_to do |format|
-        format.html { redirect_to action: 'index' }
+        format.html { redirect_to project_path(@project) }
       end
     else
       render :edit
@@ -57,7 +57,7 @@ class ProjectsController < InheritedResources::Base
     @project = @user.projects.find params[:id]
     if @project.destroy
       respond_to do |format|
-        format.html { redirect_to action: 'index' }
+        format.html { redirect_to root_path }
       end
     end
   end

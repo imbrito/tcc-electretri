@@ -2,11 +2,7 @@ require "rails_helper"
 
 RSpec.describe ProfilesController, type: :routing do
   describe "routing" do
-
-    it "routes to #index" do
-      expect(:get => "/projects/1/profiles").to route_to("profiles#index", :project_id => "1")
-    end
-
+    
     it "routes to #new" do
       expect(:get => "/projects/1/profiles/new").to route_to("profiles#new", :project_id => "1")
     end

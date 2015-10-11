@@ -11,4 +11,12 @@ FactoryGirl.define do
 		association :performable, factory: :alternative
   end
 
+  factory :performance, :class => Performance do
+    value 2.5    
+  end
+
+  factory :invalid_performance, :class => Performance do
+    value nil
+  end
+
 end

@@ -3,10 +3,6 @@ require "rails_helper"
 RSpec.describe CriterionsController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(:get => "/projects/1/criterions").to route_to("criterions#index", :project_id => "1")
-    end
-
     it "routes to #new" do
       expect(:get => "/projects/1/criterions/new").to route_to("criterions#new", :project_id => "1")
     end

@@ -9,6 +9,7 @@ en:
       pages: "Pages"
   helpers:
     actions: "Actions"
+    performances: "Performances"
     links:
       back: "Back"
       back_project: "Back to Project"
@@ -25,6 +26,7 @@ en:
       index_criterion: "All Criterions"
       index_profile: "All Profiles"
       index_project: "All Projects"
+      show: "Show"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"

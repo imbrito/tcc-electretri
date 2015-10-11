@@ -36,16 +36,7 @@ RSpec.describe ProjectsController, type: :controller do
   # ProjectsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before(:each) do
-    sign_in(user)
-  end
- 
-  describe "GET #index" do
-    it "assigns all projects as @projects" do
-      get :index, {}, valid_session
-      expect(assigns(:projects)).to eq([project])
-    end
-  end
+  before(:each) { sign_in(user) }
 
   describe "GET #show" do
     it "assigns the requested project as @project" do
@@ -85,7 +76,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "redirects to the created @project" do
         post :create, {:project => valid_attributes}, valid_session
-        expect(response).to redirect_to :action => :index
+        expect(response).to redirect_to(Project.last)
       end
     end
 
@@ -117,7 +108,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "redirects to the updated @project" do
         put :update, {:id => project.to_param, :project => valid_attributes}, valid_session
-        expect(response).to redirect_to :action => :index
+        expect(response).to redirect_to(project_url)
       end
     end
 
@@ -141,10 +132,9 @@ RSpec.describe ProjectsController, type: :controller do
       }.to change(Project, :count).by(0)
     end
 
-    it "redirects to the projects list" do
+    it "redirects to the root_path" do
       delete :destroy, {:id => project.to_param}, valid_session
-      expect(response).to redirect_to(projects_url)
+      expect(response).to redirect_to(root_path)
     end
   end
-
 end

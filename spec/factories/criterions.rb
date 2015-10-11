@@ -9,4 +9,14 @@ FactoryGirl.define do
 		association :project, factory: :project
   end
 
+  factory :invalid_criterion, :class => Criterion do
+    name nil
+		weigth nil
+		preference nil
+		indifference nil
+		veto nil
+		direction nil
+		#association :project, factory: :project
+  end
+
 end
