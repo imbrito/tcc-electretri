@@ -62,7 +62,7 @@ class CriterionsController < InheritedResources::Base
   private
 
     def criterion_params
-      params.require(:criterion).permit(:name, :weigth, :preference, :indifference, :veto, :direction)
+      params.require(:criterion).permit(:name, :weight, :preference, :indifference, :veto, :direction)
     end
 
     def get_project

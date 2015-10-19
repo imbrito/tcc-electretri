@@ -5,7 +5,7 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:weigth)
+      %th= model_class.human_attribute_name(:weight)
       %th= model_class.human_attribute_name(:preference)
       %th= model_class.human_attribute_name(:indifference)
       %th= model_class.human_attribute_name(:veto)
@@ -15,7 +15,7 @@
     - @criterions.each do |criterion|
       %tr
         %td= criterion.name
-        %td= criterion.weigth
+        %td= criterion.weight
         %td= criterion.preference
         %td= criterion.indifference
         %td= criterion.veto

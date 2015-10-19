@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909030804) do
+ActiveRecord::Schema.define(version: 20151019221750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150909030804) do
 
   create_table "criterions", force: :cascade do |t|
     t.string   "name"
-    t.float    "weigth"
+    t.float    "weight"
     t.float    "preference"
     t.float    "indifference"
     t.float    "veto"
