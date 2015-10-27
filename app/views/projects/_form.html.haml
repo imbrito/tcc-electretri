@@ -10,4 +10,4 @@
 		- if params[:action].eql?('edit')
 			= link_to t('.cancel', :default => t("helpers.links.cancel")), project_path(@project), :class => 'btn btn-default'
 		- else
-			= link_to t('.cancel', :default => t("helpers.links.cancel")), projects_path, :class => 'btn btn-default'
+			= link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn btn-default'
