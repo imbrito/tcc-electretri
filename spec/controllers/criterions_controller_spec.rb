@@ -28,7 +28,7 @@ RSpec.describe CriterionsController, type: :controller do
   let(:project) { Project.create(:name => "Hello World", :description => "Pink and Brian, to domains the World!", 
       :cut => 0.75, :user_id => user.id) }
 
-  let(:criterion) { Criterion.create(:name => "Criterion 01", :weigth => 0.3, :preference => 0.6, :indifference => 0.4,
+  let(:criterion) { Criterion.create(:name => "Criterion 01", :weight => 0.3, :preference => 0.6, :indifference => 0.4,
   :veto => 0.5, :direction => "Up", :project_id => project.id) }
 
   let(:valid_attributes) { FactoryGirl.build(:criterion).attributes }
@@ -66,7 +66,7 @@ RSpec.describe CriterionsController, type: :controller do
       it "assigns a newly created criterion as @criterion" do
         post :create, {:project_id => project.to_param, :criterion => valid_attributes}, valid_session
         expect(Criterion.last.name).to eq(criterion.name)
-        expect(Criterion.last.weigth).to eq(criterion.weigth)
+        expect(Criterion.last.weight).to eq(criterion.weight)
         expect(Criterion.last.preference).to eq(criterion.preference)
         expect(Criterion.last.indifference).to eq(criterion.indifference)
         expect(Criterion.last.veto).to eq(criterion.veto)
