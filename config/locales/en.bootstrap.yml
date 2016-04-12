@@ -11,6 +11,7 @@ en:
     actions: "Actions"
     performances: "Performances"
     links:
+      result: 'Result'
       back: "Back"
       back_project: "Back to Project"
       cancel: "Cancel"

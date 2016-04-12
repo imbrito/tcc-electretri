@@ -26,6 +26,10 @@ RSpec.describe ProjectsController, type: :routing do
     it "routes to #destroy" do
       expect(:delete => "/projects/1").to route_to("projects#destroy", :id => "1")
     end
+    
+    it "routes to #result" do
+      expect(:get => "/projects/1/result").to route_to("projects#result", :project_id => "1")
+    end
 
   end
 end

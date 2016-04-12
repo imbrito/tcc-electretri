@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   resources :projects, except: [:index] do
+    get "/result" => 'projects#result', :as => :result
     resources :criterions, except: [:index, :show]
     resources :profiles, except: [:index] do 
       resources :performances, only: [:edit, :update]

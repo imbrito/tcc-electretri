@@ -37,7 +37,6 @@
 
 - if @project.alternatives.present?
   = render :template => 'alternatives/index'
-  = link_to t('.back', :default => t("helpers.links.result")), project_result_path(@project), :class => 'btn btn-default'
 - else
   - if @project.criterions.present? && @project.profiles.present?
     .page-header

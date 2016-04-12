@@ -61,6 +61,16 @@ class ProjectsController < InheritedResources::Base
       end
     end
   end
+
+  def result
+    @project = @user.projects.includes([:criterions,:profiles,:alternatives]).find params[:project_id]
+    @criterions = @project.criterions
+    @profiles = @project.profiles
+    @alternatives = @project.alternatives
+    respond_to do |format|
+      format.html
+    end
+  end
   private
 
     def project_params
