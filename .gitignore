@@ -14,3 +14,6 @@
 
 # Ignore all fuse_hidden files
 .fuse_hidden*
+
+# Ignore development local envs
+/config/local_env.yml
