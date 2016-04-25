@@ -28,12 +28,10 @@ class ProfilesController < InheritedResources::Base
 
   def create
     @profile = @project.profiles.create(profile_params)
-    if @profile.valid?
-      if @profile.save
-      	@project.criterions.each { |criterion| @profile.performances.build(value: 0, criterion: criterion).save }
-      	respond_to do |format|
-          format.html { redirect_to project_path(@project) }
-        end
+    if @profile.save
+    	@project.criterions.each { |criterion| @profile.performances.build(value: 0, criterion: criterion).save }
+    	respond_to do |format|
+        format.html { redirect_to project_path(@project) }
       end
     else
       render :new

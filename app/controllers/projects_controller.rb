@@ -31,11 +31,9 @@ class ProjectsController < InheritedResources::Base
 
   def create
     @project = @user.projects.create(project_params)
-    if @project.valid?
-      if @project.save
-        respond_to do |format|
-          format.html { redirect_to project_path(@project) }
-        end
+    if @project.save
+      respond_to do |format|
+        format.html { redirect_to project_path(@project) }
       end
     else
       render :new

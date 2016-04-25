@@ -28,13 +28,11 @@ class AlternativesController < InheritedResources::Base
 
 	def create
 	  @alternative = @project.alternatives.create(alternative_params)
-	  if @alternative.valid?
-	    if @alternative.save
-	    	@project.criterions.each { |criterion| @alternative.performances.build(value: 0, criterion: criterion).save }
-	    	respond_to do |format|
-	        format.html { redirect_to project_path(@project) }
-	      end
-	    end
+    if @alternative.save
+    	@project.criterions.each { |criterion| @alternative.performances.build(value: 0, criterion: criterion).save }
+    	respond_to do |format|
+        format.html { redirect_to project_path(@project) }
+      end
 	  else
 	    render :new
 	  end

@@ -28,12 +28,10 @@ class CriterionsController < InheritedResources::Base
 
   def create
     @criterion = @project.criterions.create(criterion_params)
-    if @criterion.valid?
-      if @criterion.save
-        create_performance_if_exists_profiles_or_alternatives
-      	respond_to do |format|
-          format.html { redirect_to project_path(@project) }
-        end
+    if @criterion.save
+      create_performance_if_exists_profiles_or_alternatives
+    	respond_to do |format|
+        format.html { redirect_to project_path(@project) }
       end
     else
       render :new
