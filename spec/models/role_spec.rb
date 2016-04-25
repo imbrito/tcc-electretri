@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Role, type: :model do
-  let(:roleuser) { FactoryGirl.create(:roleuser) }
-  let(:roleadmin) { FactoryGirl.create(:roleadmin) }
+  let(:roleuser) 	{ FactoryGirl.build(:roleuser) }
+  let(:roleadmin) { FactoryGirl.build(:roleadmin) }
+
+  it { is_expected.to have_many(:users) }
   
   it "@role User" do
     expect("user").to eq(roleuser.name)

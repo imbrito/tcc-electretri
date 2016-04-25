@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:user)  { FactoryGirl.build(:user) }
+  let(:admin) { FactoryGirl.build(:admin) }
+
+  it { is_expected.to belong_to(:role) }
+  it { is_expected.to have_many(:projects) }
+  it { should accept_nested_attributes_for(:role) }
 
   it "@user" do
     expect("torvalds").to eq(user.password)

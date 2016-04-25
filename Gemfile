@@ -127,6 +127,9 @@ group :development, :test do
   # Strategies for cleaning databases. Can be used to ensure a clean state for testing.
   gem 'database_cleaner', '~> 1.5.0'
 
+  # Making tests easy on the fingers and eyes
+  gem 'shoulda-matchers', '~> 3.1.1'
+
   # RSpec for Rails
   gem 'rspec-rails', '~> 3.3.3'
 
