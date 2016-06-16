@@ -1,20 +1,17 @@
-class PerformancesController < InheritedResources::Base
-  respond_to :html
-  before_filter :get_performable
+class PerformancesController < ApplicationController
+  before_filter :set_performable
+  before_action :set_performance
 
   def edit
-    @performance = @performable.performances.find params[:id]
-    respond_with @performance
   end
 
   def update
-    @performance = @performable.performances.find params[:id]
-    if @performance.update_attributes(performance_params)
-      respond_to do |format|
+    respond_to do |format|
+      if @performance.update_attributes(performance_params)
       	format.html { redirect_to polymorphic_url([@project, @performable]) }
+      else
+        format.html { render :edit }
       end
-    else
-      render :edit
     end
   end
   private
@@ -23,10 +20,13 @@ class PerformancesController < InheritedResources::Base
       params.require(:performance).permit(:value)
     end
 
-    def get_performable
+    def set_performable
     	@project = Project.find params[:project_id]
     	klass = [Profile, Alternative].detect{|c| params["#{c.name.underscore}_id"]}
       @performable = klass.find params["#{klass.name.underscore}_id"]
     end
-end
 
+    def set_performance
+      @performance = @performable.performances.find params[:id]
+    end
+end

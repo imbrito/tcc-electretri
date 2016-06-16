@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
-# A toolkit for building modeling frameworks like Active Record. 
+# A toolkit for building modeling frameworks like Active Record.
 # Rich support for attributes, callbacks, validations, serialization, internationalization, and testing
 gem 'activemodel', '>= 3.2'
 
@@ -47,13 +47,13 @@ gem 'unicorn'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 3.5.2'
 
-# Continuation of the simple authorization solution for Rails which is decoupled from user roles. 
+# Continuation of the simple authorization solution for Rails which is decoupled from user roles.
 # All permissions are stored in a single location.
 gem 'cancancan', '~> 1.12.0'
 
-# C extensions to accelerate the Ruby BSON serialization. 
+# C extensions to accelerate the Ruby BSON serialization.
 # A full featured BSON specification implementation, in Ruby
-# For more information about BSON, see http://bsonspec.org. 
+# For more information about BSON, see http://bsonspec.org.
 # For information about MongoDB, see http://www.mongodb.org
 gem 'bson'
 gem 'bson_ext'
@@ -70,16 +70,12 @@ gem 'less-rails', '~> 2.7.0'
 # Forms made easy!
 gem 'simple_form', '~> 3.2.0'
 
-# Haml-rails provides Haml generators for Rails 4. 
-# It also enables Haml as the templating engine for you, so you don't have to screw around in your own application.rb 
+# Haml-rails provides Haml generators for Rails 4.
+# It also enables Haml as the templating engine for you, so you don't have to screw around in your own application.rb
 # when your Gemfile already clearly indicated what templating engine you have installed. Hurrah
 gem 'haml-rails', '~> 0.9.0'
 
-# Inherited Resources speeds up development by making your controllers inherit all restful actions
-# so you just have to focus on what is important
-gem 'inherited_resources', '~> 1.6.0'
-
-# The readline library provides a pure Ruby implementation of the GNU readline C library, 
+# The readline library provides a pure Ruby implementation of the GNU readline C library,
 # as well as the Readline extension that ships as part of the standard library
 gem 'rb-readline', '~> 0.5.3'
 
@@ -117,13 +113,13 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  # Capybara is an integration testing tool for rack based web applications. 
+  # Capybara is an integration testing tool for rack based web applications.
   # It simulates how a user would interact with a website
   gem 'capybara', '~> 2.5.0'
 
   # Poltergeist is a driver for Capybara that allows you to run your tests on a headless WebKit browser, provided by PhantomJS
   # gem 'poltergeist', '~> 1.5.0'
-  
+
   # Strategies for cleaning databases. Can be used to ensure a clean state for testing.
   gem 'database_cleaner', '~> 1.5.0'
 
@@ -138,9 +134,9 @@ group :development, :test do
 
   # factory_girl_rails provides integration between factory_girl and rails 3 (currently just automatic factory definition loading)
   gem 'factory_girl_rails', '~> 4.5.0'
-  
-  # Launchy is helper class for launching cross-platform applications in a fire and forget manner. 
-  # There are application concepts (browser, email client, etc) that are common across all platforms, and they may be launched differently on each platform. 
+
+  # Launchy is helper class for launching cross-platform applications in a fire and forget manner.
+  # There are application concepts (browser, email client, etc) that are common across all platforms, and they may be launched differently on each platform.
   # Launchy is here to make a common approach to launching external application from within ruby programs.
   gem 'launchy', '~> 2.4.3'
 
@@ -150,4 +146,3 @@ group :development, :test do
   # Use Pry as your rails console
   gem 'pry-rails', '~> 0.3.4'
 end
-
