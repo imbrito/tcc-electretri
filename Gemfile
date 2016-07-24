@@ -41,6 +41,10 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.10'
 
+# A modern web server and application server for Ruby, Python and Node.js, 
+# optimized for performance, low memory usage and ease of use
+gem 'passenger'
+
 # Use Unicorn as the app server
 gem 'unicorn'
 
