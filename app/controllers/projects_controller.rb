@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = @user.projects.includes([:criterions,:profiles,:alternatives]).find params[:id]
+    @project = @user.projects.includes([:criterions, :profiles, :alternatives]).find params[:id]
     @criterions = @project.criterions
     @profiles = @project.profiles
     @alternatives = @project.alternatives
@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
   end
 
   def result
-    @project = @user.projects.includes([:criterions,:profiles,:alternatives]).find params[:project_id]
+    @project = @user.projects.includes([:criterions, :profiles, :alternatives]).find params[:project_id]
     @criterions = @project.criterions
     @profiles = @project.profiles
     @alternatives = @project.alternatives
@@ -57,17 +57,18 @@ class ProjectsController < ApplicationController
       format.html
     end
   end
+
   private
 
-    def project_params
-      params.require(:project).permit(:name, :description, :cut)
-    end
+  def project_params
+    params.require(:project).permit(:name, :description, :cut)
+  end
 
-    def set_user
-      @user = current_user
-    end
+  def set_user
+    @user = current_user
+  end
 
-    def set_project
-      @project = @user.projects.find params[:id]
-    end
+  def set_project
+    @project = @user.projects.find params[:id]
+  end
 end

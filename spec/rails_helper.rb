@@ -30,7 +30,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Stub-authentication-in-controller-specs
-  # If you're using RSpec, you can put the following inside a file named spec/support/devise.rb 
+  # If you're using RSpec, you can put the following inside a file named spec/support/devise.rb
   # or in your spec/spec_helper.rb (or spec/rails_helper.rb if you are using rspec-rails)
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
@@ -40,8 +40,8 @@ RSpec.configure do |config|
   Rails.logger.level = 4
   config.include Capybara::DSL
 
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
+  Shoulda::Matchers.configure do |shoulda|
+    shoulda.integrate do |with|
       # Choose a test framework:
       with.test_framework :rspec
 
@@ -49,7 +49,7 @@ RSpec.configure do |config|
       with.library :active_record
       with.library :active_model
       with.library :action_controller
-      
+
       # Or, choose the following (which implies all of the above):
       with.library :rails
     end
@@ -60,8 +60,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.fuubar_progress_bar_options = { :format => 'ElectreTri APP! %a %bᗧ%i %p%% %t',
-    :progress_mark  => ' ', :remainder_mark => '･', :starting_at => 0 }
+  config.fuubar_progress_bar_options = { format: 'ElectreTri APP! %a %bᗧ%i %p%% %t',
+                                         progress_mark: ' ', remainder_mark: '･', starting_at: 0 }
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

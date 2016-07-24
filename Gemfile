@@ -103,6 +103,15 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 
 group :development, :test do
+  # Automatic Ruby code style checking tool. Aims to enforce the community-driven Ruby Style Guide.
+  gem 'rubocop', require: false
+
+  # Code style checking for RSpec files. A plugin for the RuboCop code style enforcing & linting tool
+  gem 'rubocop-rspec', require: false
+
+  # Configurable tool for writing clean and consistent HAML
+  gem 'haml_lint', require: false
+
   # Automatically generate an entity-relationship diagram (ERD) for your Rails models.
   gem 'rails-erd', '~> 1.4.3'
 

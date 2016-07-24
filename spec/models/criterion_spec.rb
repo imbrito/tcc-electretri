@@ -12,13 +12,13 @@ RSpec.describe Criterion, type: :model do
   it { is_expected.to validate_numericality_of(:indifference).is_greater_than_or_equal_to(0) }
   it { is_expected.to validate_numericality_of(:veto).is_greater_than_or_equal_to(0) }
 
-  it "@criterion" do
-    expect("Criterion 01").to eq(criterion.name)
+  it '@criterion' do
+    expect('Criterion 01').to eq(criterion.name)
     expect(0.3).to eq(criterion.weight)
     expect(0.6).to eq(criterion.preference)
     expect(0.4).to eq(criterion.indifference)
     expect(0.5).to eq(criterion.veto)
-    expect("Up").to eq(criterion.direction)
-    expect("Hello World").to eq(criterion.project.name)
+    expect('Up').to eq(criterion.direction)
+    expect('Hello World').to eq(criterion.project.name)
   end
 end

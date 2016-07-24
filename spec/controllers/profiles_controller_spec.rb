@@ -19,20 +19,25 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe ProfilesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Profile. As you add validations to Profile, be sure to
   # adjust the attributes here as well.
   let(:user) { FactoryGirl.create(:user) }
 
-  let(:project) { Project.create(:name => "Hello World", :description => "Pink and Brian, to domains the World!", 
-      :cut => 0.75, :user_id => user.id) }
+  let(:project) do
+    Project.create(name: 'Hello World', description: 'Pink and Brian, to domains the World!',
+                   cut: 0.75, user_id: user.id)
+  end
 
-  let(:profile) { Profile.create(:name => "Profile A", :description => "This profile is excellent!",
-    :project_id => project.id) }
+  let(:profile) do
+    Profile.create(name: 'Profile A', description: 'This profile is excellent!',
+                   project_id: project.id)
+  end
 
-  let(:performable) { Profile.create(:name => "Profile A", :description => "This profile is excellent!",
-    :project_id => project.id) }
+  let(:performable) do
+    Profile.create(name: 'Profile A', description: 'This profile is excellent!',
+                   project_id: project.id)
+  end
 
   let(:valid_attributes) { FactoryGirl.build(:profile).attributes }
   let(:invalid_attributes) { FactoryGirl.build(:invalid_profile).attributes }
@@ -44,101 +49,101 @@ RSpec.describe ProfilesController, type: :controller do
 
   before(:each) { sign_in(user) }
 
-  describe "GET #show" do
-    it "assigns the requested profile as @profile" do
-      get :show, {:project_id => project.to_param, :id => performable.to_param}, valid_session
+  describe 'GET #show' do
+    it 'assigns the requested profile as @profile' do
+      get :show, { project_id: project.to_param, id: performable.to_param }, valid_session
       expect(assigns(:performable)).to eq(performable)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new profile as @profile" do
-      get :new, {:project_id => project.to_param}, valid_session
+  describe 'GET #new' do
+    it 'assigns a new profile as @profile' do
+      get :new, { project_id: project.to_param }, valid_session
       expect(assigns(:profile)).to be_a_new(Profile)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested profile as @profile" do
-      get :edit, {:project_id => project.to_param, :id => profile.to_param}, valid_session
+  describe 'GET #edit' do
+    it 'assigns the requested profile as @profile' do
+      get :edit, { project_id: project.to_param, id: profile.to_param }, valid_session
       expect(assigns(:profile)).to eq(profile)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Profile" do
-        expect {
-          post :create, {:project_id => project.to_param, :profile => valid_attributes}, valid_session
-        }.to change(Profile, :count).by(1)
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Profile' do
+        expect do
+          post :create, { project_id: project.to_param, profile: valid_attributes }, valid_session
+        end.to change(Profile, :count).by(1)
       end
 
-      it "assigns a newly created profile as @profile" do
-        post :create, {:project_id => project.to_param, :profile => valid_attributes}, valid_session
+      it 'assigns a newly created profile as @profile' do
+        post :create, { project_id: project.to_param, profile: valid_attributes }, valid_session
         expect(Profile.last.name).to eq(profile.name)
         expect(Profile.last.description).to eq(profile.description)
       end
 
-      it "redirects to the created @profile" do
-        post :create, {:project_id => project.to_param, :profile => valid_attributes}, valid_session
+      it 'redirects to the created @profile' do
+        post :create, { project_id: project.to_param, profile: valid_attributes }, valid_session
         expect(response).to redirect_to(project_path(project))
       end
     end
 
-    context "with invalid attributes" do
-      it "assigns a newly created but unsaved profile as @profile" do
-        post :create, {:project_id => project.to_param, :profile => invalid_attributes}, valid_session
+    context 'with invalid attributes' do
+      it 'assigns a newly created but unsaved profile as @profile' do
+        post :create, { project_id: project.to_param, profile: invalid_attributes }, valid_session
         expect(assigns(:profile)).to be_a_new(Profile)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:project_id => project.to_param, :profile => invalid_attributes}, valid_session
+        post :create, { project_id: project.to_param, profile: invalid_attributes }, valid_session
         expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      it "updates the requested profile" do
-        put :update, {:project_id => project.to_param, :id => profile.to_param, :profile => valid_attributes}, valid_session
+  describe 'PUT #update' do
+    context 'with valid params' do
+      it 'updates the requested profile' do
+        put :update, { project_id: project.to_param, id: profile.to_param, profile: valid_attributes }, valid_session
         profile.reload
         expect(assigns(:profile)).to eq(profile)
       end
 
-      it "assigns the requested profile as @profile" do
-        put :update, {:project_id => project.to_param, :id => profile.to_param, :profile => valid_attributes}, valid_session
+      it 'assigns the requested profile as @profile' do
+        put :update, { project_id: project.to_param, id: profile.to_param, profile: valid_attributes }, valid_session
         expect(assigns(:profile)).to eq(profile)
       end
 
-      it "redirects to the updated @profile" do
-        put :update, {:project_id => project.to_param, :id => profile.to_param, :profile => valid_attributes}, valid_session
+      it 'redirects to the updated @profile' do
+        put :update, { project_id: project.to_param, id: profile.to_param, profile: valid_attributes }, valid_session
         expect(response).to redirect_to(project_path(project))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the profile as @profile" do
-        put :update, {:project_id => project.to_param, :id => profile.to_param, :profile => invalid_attributes}, valid_session
+    context 'with invalid params' do
+      it 'assigns the profile as @profile' do
+        put :update, { project_id: project.to_param, id: profile.to_param, profile: invalid_attributes }, valid_session
         expect(assigns(:profile)).to eq(profile)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, {:project_id => project.to_param, :id => profile.to_param, :profile => invalid_attributes}, valid_session
+        put :update, { project_id: project.to_param, id: profile.to_param, profile: invalid_attributes }, valid_session
         expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested profile" do
-      expect {
-        delete :destroy, {:project_id => project.to_param, :id => profile.to_param}, valid_session
-      }.to change(Profile, :count).by(0)
+  describe 'DELETE #destroy' do
+    it 'destroys the requested profile' do
+      expect do
+        delete :destroy, { project_id: project.to_param, id: profile.to_param }, valid_session
+      end.to change(Profile, :count).by(0)
     end
 
-    it "redirects to the @project" do
-      delete :destroy, {:project_id => project.to_param, :id => profile.to_param}, valid_session
+    it 'redirects to the @project' do
+      delete :destroy, { project_id: project.to_param, id: profile.to_param }, valid_session
       expect(response).to redirect_to(Project.last)
     end
   end

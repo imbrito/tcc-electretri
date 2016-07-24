@@ -1,24 +1,23 @@
 Rails.application.routes.draw do
-  
   resources :projects, except: [:index] do
-    get "/result" => 'projects#result', :as => :result
+    get '/result' => 'projects#result', :as => :result
     resources :criterions, except: [:index, :show]
-    resources :profiles, except: [:index] do 
+    resources :profiles, except: [:index] do
       resources :performances, only: [:edit, :update]
     end
-    resources :alternatives, except: [:index] do 
+    resources :alternatives, except: [:index] do
       resources :performances, only: [:edit, :update]
     end
   end
   devise_for :users
-  
+
   get '/index' => 'home#index', :as => :index
 
   get '/about' => 'home#about', :as => :about
 
   get '/team' => 'home#team', :as => :team
 
-  root :to => "home#index"
+  root to: 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

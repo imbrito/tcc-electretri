@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :role
 
   private
+
   def set_default_role
-  	self.role ||= Role.find_by_name('user')
+    self.role ||= Role.find_by_name('user')
   end
 end

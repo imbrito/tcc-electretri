@@ -19,20 +19,25 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe AlternativesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Alternative. As you add validations to Alternative, be sure to
   # adjust the attributes here as well.
   let(:user) { FactoryGirl.create(:user) }
 
-  let(:project) { Project.create(:name => "Hello World", :description => "Pink and Brian, to domains the World!", 
-      :cut => 0.75, :user_id => user.id) }
+  let(:project) do
+    Project.create(name: 'Hello World', description: 'Pink and Brian, to domains the World!',
+                   cut: 0.75, user_id: user.id)
+  end
 
-  let(:alternative) { Alternative.create(:name => "Alternative A", :description => "This first alternative!",
-    :project_id => project.id) }
+  let(:alternative) do
+    Alternative.create(name: 'Alternative A', description: 'This first alternative!',
+                       project_id: project.id)
+  end
 
-  let(:performable) { Alternative.create(:name => "Alternative A", :description => "This first alternative!",
-    :project_id => project.id) }
+  let(:performable) do
+    Alternative.create(name: 'Alternative A', description: 'This first alternative!',
+                       project_id: project.id)
+  end
 
   let(:valid_attributes) { FactoryGirl.build(:alternative).attributes }
   let(:invalid_attributes) { FactoryGirl.build(:invalid_alternative).attributes }
@@ -44,101 +49,101 @@ RSpec.describe AlternativesController, type: :controller do
 
   before(:each) { sign_in(user) }
 
-  describe "GET #show" do
-    it "assigns the requested alternative as @alternative" do
-      get :show, {:project_id => project.to_param, :id => performable.to_param}, valid_session
+  describe 'GET #show' do
+    it 'assigns the requested alternative as @alternative' do
+      get :show, { project_id: project.to_param, id: performable.to_param }, valid_session
       expect(assigns(:performable)).to eq(performable)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new alternative as @alternative" do
-      get :new, {:project_id => project.to_param}, valid_session
+  describe 'GET #new' do
+    it 'assigns a new alternative as @alternative' do
+      get :new, { project_id: project.to_param }, valid_session
       expect(assigns(:alternative)).to be_a_new(Alternative)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested alternative as @alternative" do
-      get :edit, {:project_id => project.to_param, :id => alternative.to_param}, valid_session
+  describe 'GET #edit' do
+    it 'assigns the requested alternative as @alternative' do
+      get :edit, { project_id: project.to_param, id: alternative.to_param }, valid_session
       expect(assigns(:alternative)).to eq(alternative)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Alternative" do
-        expect {
-          post :create, {:project_id => project.to_param, :alternative => valid_attributes}, valid_session
-        }.to change(Alternative, :count).by(1)
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Alternative' do
+        expect do
+          post :create, { project_id: project.to_param, alternative: valid_attributes }, valid_session
+        end.to change(Alternative, :count).by(1)
       end
 
-      it "assigns a newly created alternative as @alternative" do
-        post :create, {:project_id => project.to_param, :alternative => valid_attributes}, valid_session
+      it 'assigns a newly created alternative as @alternative' do
+        post :create, { project_id: project.to_param, alternative: valid_attributes }, valid_session
         expect(Alternative.last.name).to eq(alternative.name)
         expect(Alternative.last.description).to eq(alternative.description)
       end
 
-      it "redirects to the created @alternative" do
-        post :create, {:project_id => project.to_param, :alternative => valid_attributes}, valid_session
+      it 'redirects to the created @alternative' do
+        post :create, { project_id: project.to_param, alternative: valid_attributes }, valid_session
         expect(response).to redirect_to(project_path(project))
       end
     end
 
-    context "with invalid attributes" do
-      it "assigns a newly created but unsaved alternative as @alternative" do
-        post :create, {:project_id => project.to_param, :alternative => invalid_attributes}, valid_session
+    context 'with invalid attributes' do
+      it 'assigns a newly created but unsaved alternative as @alternative' do
+        post :create, { project_id: project.to_param, alternative: invalid_attributes }, valid_session
         expect(assigns(:alternative)).to be_a_new(Alternative)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:project_id => project.to_param, :alternative => invalid_attributes}, valid_session
+        post :create, { project_id: project.to_param, alternative: invalid_attributes }, valid_session
         expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      it "updates the requested alternative" do
-        put :update, {:project_id => project.to_param, :id => alternative.to_param, :alternative => valid_attributes}, valid_session
+  describe 'PUT #update' do
+    context 'with valid params' do
+      it 'updates the requested alternative' do
+        put :update, { project_id: project.to_param, id: alternative.to_param, alternative: valid_attributes }, valid_session
         alternative.reload
         expect(assigns(:alternative)).to eq(alternative)
       end
 
-      it "assigns the requested alternative as @alternative" do
-        put :update, {:project_id => project.to_param, :id => alternative.to_param, :alternative => valid_attributes}, valid_session
+      it 'assigns the requested alternative as @alternative' do
+        put :update, { project_id: project.to_param, id: alternative.to_param, alternative: valid_attributes }, valid_session
         expect(assigns(:alternative)).to eq(alternative)
       end
 
-      it "redirects to the updated @alternative" do
-        put :update, {:project_id => project.to_param, :id => alternative.to_param, :alternative => valid_attributes}, valid_session
+      it 'redirects to the updated @alternative' do
+        put :update, { project_id: project.to_param, id: alternative.to_param, alternative: valid_attributes }, valid_session
         expect(response).to redirect_to(project_path(project))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the alternative as @alternative" do
-        put :update, {:project_id => project.to_param, :id => alternative.to_param, :alternative => invalid_attributes}, valid_session
+    context 'with invalid params' do
+      it 'assigns the alternative as @alternative' do
+        put :update, { project_id: project.to_param, id: alternative.to_param, alternative: invalid_attributes }, valid_session
         expect(assigns(:alternative)).to eq(alternative)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, {:project_id => project.to_param, :id => alternative.to_param, :alternative => invalid_attributes}, valid_session
+        put :update, { project_id: project.to_param, id: alternative.to_param, alternative: invalid_attributes }, valid_session
         expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested alternative" do
-      expect {
-        delete :destroy, {:project_id => project.to_param, :id => alternative.to_param}, valid_session
-      }.to change(Alternative, :count).by(0)
+  describe 'DELETE #destroy' do
+    it 'destroys the requested alternative' do
+      expect do
+        delete :destroy, { project_id: project.to_param, id: alternative.to_param }, valid_session
+      end.to change(Alternative, :count).by(0)
     end
 
-    it "redirects to the @project" do
-      delete :destroy, {:project_id => project.to_param, :id => alternative.to_param}, valid_session
+    it 'redirects to the @project' do
+      delete :destroy, { project_id: project.to_param, id: alternative.to_param }, valid_session
       expect(response).to redirect_to(Project.last)
     end
   end

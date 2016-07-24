@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
     @profile = @project.profiles.create(profile_params)
     respond_to do |format|
       if @profile.save
-    	   @project.criterions.each { |criterion| @profile.performances.build(value: 0, criterion: criterion).save }
+        @project.criterions.each { |criterion| @profile.performances.build(value: 0, criterion: criterion).save }
         format.html { redirect_to project_path(@project) }
       else
         format.html { render :new }
@@ -45,17 +45,18 @@ class ProfilesController < ApplicationController
       format.html { redirect_to project_path(@project) }
     end
   end
+
   private
 
-    def profile_params
-      params.require(:profile).permit(:name, :description)
-    end
+  def profile_params
+    params.require(:profile).permit(:name, :description)
+  end
 
-    def set_project
-      @project = Project.includes([:criterions,:profiles]).find params[:project_id]
-    end
+  def set_project
+    @project = Project.includes([:criterions, :profiles]).find params[:project_id]
+  end
 
-    def set_profile
-      @profile = @project.profiles.find params[:id]
-    end
+  def set_profile
+    @profile = @project.profiles.find params[:id]
+  end
 end

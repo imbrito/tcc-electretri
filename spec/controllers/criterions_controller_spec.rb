@@ -19,17 +19,20 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe CriterionsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Criterion. As you add validations to Criterion, be sure to
   # adjust the attributes here as well.
   let(:user) { FactoryGirl.create(:user) }
 
-  let(:project) { Project.create(:name => "Hello World", :description => "Pink and Brian, to domains the World!", 
-      :cut => 0.75, :user_id => user.id) }
+  let(:project) do
+    Project.create(name: 'Hello World', description: 'Pink and Brian, to domains the World!',
+                   cut: 0.75, user_id: user.id)
+  end
 
-  let(:criterion) { Criterion.create(:name => "Criterion 01", :weight => 0.3, :preference => 0.6, :indifference => 0.4,
-  :veto => 0.5, :direction => "Up", :project_id => project.id) }
+  let(:criterion) do
+    Criterion.create(name: 'Criterion 01', weight: 0.3, preference: 0.6, indifference: 0.4,
+                     veto: 0.5, direction: 'Up', project_id: project.id)
+  end
 
   let(:valid_attributes) { FactoryGirl.build(:criterion).attributes }
   let(:invalid_attributes) { FactoryGirl.build(:invalid_criterion).attributes }
@@ -41,30 +44,30 @@ RSpec.describe CriterionsController, type: :controller do
 
   before(:each) { sign_in(user) }
 
-  describe "GET #new" do
-    it "assigns a new criterion as @criterion" do
-      get :new, {:project_id => project.to_param}, valid_session
+  describe 'GET #new' do
+    it 'assigns a new criterion as @criterion' do
+      get :new, { project_id: project.to_param }, valid_session
       expect(assigns(:criterion)).to be_a_new(Criterion)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested criterion as @criterion" do
-      get :edit, {:project_id => project.to_param, :id => criterion.to_param}, valid_session
+  describe 'GET #edit' do
+    it 'assigns the requested criterion as @criterion' do
+      get :edit, { project_id: project.to_param, id: criterion.to_param }, valid_session
       expect(assigns(:criterion)).to eq(criterion)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Criterion" do
-        expect {
-          post :create, {:project_id => project.to_param, :criterion => valid_attributes}, valid_session
-        }.to change(Criterion, :count).by(1)
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Criterion' do
+        expect do
+          post :create, { project_id: project.to_param, criterion: valid_attributes }, valid_session
+        end.to change(Criterion, :count).by(1)
       end
 
-      it "assigns a newly created criterion as @criterion" do
-        post :create, {:project_id => project.to_param, :criterion => valid_attributes}, valid_session
+      it 'assigns a newly created criterion as @criterion' do
+        post :create, { project_id: project.to_param, criterion: valid_attributes }, valid_session
         expect(Criterion.last.name).to eq(criterion.name)
         expect(Criterion.last.weight).to eq(criterion.weight)
         expect(Criterion.last.preference).to eq(criterion.preference)
@@ -73,66 +76,66 @@ RSpec.describe CriterionsController, type: :controller do
         expect(Criterion.last.direction).to eq(criterion.direction)
       end
 
-      it "redirects to the created @criterion" do
-        post :create, {:project_id => project.to_param, :criterion => valid_attributes}, valid_session
+      it 'redirects to the created @criterion' do
+        post :create, { project_id: project.to_param, criterion: valid_attributes }, valid_session
         expect(response).to redirect_to(project_path(project))
       end
     end
 
-    context "with invalid attributes" do
-      it "assigns a newly created but unsaved criterion as @criterion" do
-        post :create, {:project_id => project.to_param, :criterion => invalid_attributes}, valid_session
+    context 'with invalid attributes' do
+      it 'assigns a newly created but unsaved criterion as @criterion' do
+        post :create, { project_id: project.to_param, criterion: invalid_attributes }, valid_session
         expect(assigns(:criterion)).to be_a_new(Criterion)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:project_id => project.to_param, :criterion => invalid_attributes}, valid_session
+        post :create, { project_id: project.to_param, criterion: invalid_attributes }, valid_session
         expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      it "updates the requested criterion" do
-        put :update, {:project_id => project.to_param, :id => criterion.to_param, :criterion => valid_attributes}, valid_session
+  describe 'PUT #update' do
+    context 'with valid params' do
+      it 'updates the requested criterion' do
+        put :update, { project_id: project.to_param, id: criterion.to_param, criterion: valid_attributes }, valid_session
         criterion.reload
         expect(assigns(:criterion)).to eq(criterion)
       end
 
-      it "assigns the requested criterion as @criterion" do
-        put :update, {:project_id => project.to_param, :id => criterion.to_param, :criterion => valid_attributes}, valid_session
+      it 'assigns the requested criterion as @criterion' do
+        put :update, { project_id: project.to_param, id: criterion.to_param, criterion: valid_attributes }, valid_session
         expect(assigns(:criterion)).to eq(criterion)
       end
 
-      it "redirects to the updated @criterion" do
-        put :update, {:project_id => project.to_param, :id => criterion.to_param, :criterion => valid_attributes}, valid_session
+      it 'redirects to the updated @criterion' do
+        put :update, { project_id: project.to_param, id: criterion.to_param, criterion: valid_attributes }, valid_session
         expect(response).to redirect_to(project_path(project))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the criterion as @criterion" do
-        put :update, {:project_id => project.to_param, :id => criterion.to_param, :criterion => invalid_attributes}, valid_session
+    context 'with invalid params' do
+      it 'assigns the criterion as @criterion' do
+        put :update, { project_id: project.to_param, id: criterion.to_param, criterion: invalid_attributes }, valid_session
         expect(assigns(:criterion)).to eq(criterion)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, {:project_id => project.to_param, :id => criterion.to_param, :criterion => invalid_attributes}, valid_session
+        put :update, { project_id: project.to_param, id: criterion.to_param, criterion: invalid_attributes }, valid_session
         expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested criterion" do
-      expect {
-        delete :destroy, {:project_id => project.to_param, :id => criterion.to_param}, valid_session
-      }.to change(Criterion, :count).by(0)
+  describe 'DELETE #destroy' do
+    it 'destroys the requested criterion' do
+      expect do
+        delete :destroy, { project_id: project.to_param, id: criterion.to_param }, valid_session
+      end.to change(Criterion, :count).by(0)
     end
 
-    it "redirects to the @project" do
-      delete :destroy, {:project_id => project.to_param, :id => criterion.to_param}, valid_session
+    it 'redirects to the @project' do
+      delete :destroy, { project_id: project.to_param, id: criterion.to_param }, valid_session
       expect(response).to redirect_to(Project.last)
     end
   end

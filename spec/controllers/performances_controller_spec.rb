@@ -19,20 +19,25 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe PerformancesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Performance. As you add validations to Performance, be sure to
   # adjust the attributes here as well.
   let(:user) { FactoryGirl.create(:user) }
 
-  let(:project) { Project.create(:name => "Hello World", :description => "Pink and Brian, to domains the World!", 
-      :cut => 0.75, :user_id => user.id) }
+  let(:project) do
+    Project.create(name: 'Hello World', description: 'Pink and Brian, to domains the World!',
+                   cut: 0.75, user_id: user.id)
+  end
 
-  let(:profile) { Profile.create(:name => "Profile A", :description => "This profile is excellent!",
-    :project_id => project.id) }
+  let(:profile) do
+    Profile.create(name: 'Profile A', description: 'This profile is excellent!',
+                   project_id: project.id)
+  end
 
-  let(:alternative) { Alternative.create(:name => "Alternative A", :description => "This first alternative!",
-    :project_id => project.id) }
+  let(:alternative) do
+    Alternative.create(name: 'Alternative A', description: 'This first alternative!',
+                       project_id: project.id)
+  end
 
   let(:valid_attributes) { FactoryGirl.build(:performance).attributes }
   let(:invalid_attributes) { FactoryGirl.build(:invalid_performance).attributes }
@@ -44,86 +49,86 @@ RSpec.describe PerformancesController, type: :controller do
 
   before(:each) { sign_in(user) }
 
-  context "to alternative" do
-    let(:performance) { Performance.create(:value => 1.5, :performable_id => alternative.id, :performable_type => Alternative) }
+  context 'to alternative' do
+    let(:performance) { Performance.create(value: 1.5, performable_id: alternative.id, performable_type: Alternative) }
 
-    describe "GET #edit" do
-      it "assigns the requested performance as @performance" do
-        get :edit, {:project_id => project.to_param, :alternative_id => alternative.to_param, :id => performance.to_param}, valid_session
+    describe 'GET #edit' do
+      it 'assigns the requested performance as @performance' do
+        get :edit, { project_id: project.to_param, alternative_id: alternative.to_param, id: performance.to_param }, valid_session
         expect(assigns(:performance)).to eq(performance)
       end
     end
 
-    describe "PUT #update" do
-      context "with valid params" do
-        it "updates the requested performance" do
-          put :update, {:project_id => project.to_param, :alternative_id => alternative.to_param, :id => performance.to_param, :performance => valid_attributes}, valid_session
+    describe 'PUT #update' do
+      context 'with valid params' do
+        it 'updates the requested performance' do
+          put :update, { project_id: project.to_param, alternative_id: alternative.to_param, id: performance.to_param, performance: valid_attributes }, valid_session
           performance.reload
           expect(assigns(:performance)).to eq(performance)
         end
 
-        it "assigns the requested performance as @performance" do
-          put :update, {:project_id => project.to_param, :alternative_id => alternative.to_param, :id => performance.to_param, :performance => valid_attributes}, valid_session
+        it 'assigns the requested performance as @performance' do
+          put :update, { project_id: project.to_param, alternative_id: alternative.to_param, id: performance.to_param, performance: valid_attributes }, valid_session
           expect(assigns(:performance)).to eq(performance)
         end
 
-        it "redirects to the updated @performance" do
-          put :update, {:project_id => project.to_param, :alternative_id => alternative.to_param, :id => performance.to_param, :performance => valid_attributes}, valid_session
-          expect(response).to redirect_to(project_alternative_path(project,alternative))
+        it 'redirects to the updated @performance' do
+          put :update, { project_id: project.to_param, alternative_id: alternative.to_param, id: performance.to_param, performance: valid_attributes }, valid_session
+          expect(response).to redirect_to(project_alternative_path(project, alternative))
         end
       end
 
-      context "with invalid params" do
-        it "assigns the performance as @performance" do
-          put :update, {:project_id => project.to_param, :alternative_id => alternative.to_param, :id => performance.to_param, :performance => invalid_attributes}, valid_session
+      context 'with invalid params' do
+        it 'assigns the performance as @performance' do
+          put :update, { project_id: project.to_param, alternative_id: alternative.to_param, id: performance.to_param, performance: invalid_attributes }, valid_session
           expect(assigns(:performance)).to eq(performance)
         end
 
         it "re-renders the 'edit' template" do
-          put :update, {:project_id => project.to_param, :alternative_id => alternative.to_param, :id => performance.to_param, :performance => invalid_attributes}, valid_session
+          put :update, { project_id: project.to_param, alternative_id: alternative.to_param, id: performance.to_param, performance: invalid_attributes }, valid_session
           expect(response).to render_template('edit')
         end
       end
     end
   end
 
-  context "to profile" do
-    let(:performance) { Performance.create(:value => 1.5, :performable_id => profile.id, :performable_type => Profile) }
+  context 'to profile' do
+    let(:performance) { Performance.create(value: 1.5, performable_id: profile.id, performable_type: Profile) }
 
-    describe "GET #edit" do
-      it "assigns the requested performance as @performance" do
-        get :edit, {:project_id => project.to_param, :profile_id => profile.to_param, :id => performance.to_param}, valid_session
+    describe 'GET #edit' do
+      it 'assigns the requested performance as @performance' do
+        get :edit, { project_id: project.to_param, profile_id: profile.to_param, id: performance.to_param }, valid_session
         expect(assigns(:performance)).to eq(performance)
       end
     end
 
-    describe "PUT #update" do
-      context "with valid params" do
-        it "updates the requested performance" do
-          put :update, {:project_id => project.to_param, :profile_id => profile.to_param, :id => performance.to_param, :performance => valid_attributes}, valid_session
+    describe 'PUT #update' do
+      context 'with valid params' do
+        it 'updates the requested performance' do
+          put :update, { project_id: project.to_param, profile_id: profile.to_param, id: performance.to_param, performance: valid_attributes }, valid_session
           performance.reload
           expect(assigns(:performance)).to eq(performance)
         end
 
-        it "assigns the requested performance as @performance" do
-          put :update, {:project_id => project.to_param, :profile_id => profile.to_param, :id => performance.to_param, :performance => valid_attributes}, valid_session
+        it 'assigns the requested performance as @performance' do
+          put :update, { project_id: project.to_param, profile_id: profile.to_param, id: performance.to_param, performance: valid_attributes }, valid_session
           expect(assigns(:performance)).to eq(performance)
         end
 
-        it "redirects to the updated @performance" do
-          put :update, {:project_id => project.to_param, :profile_id => profile.to_param, :id => performance.to_param, :performance => valid_attributes}, valid_session
-          expect(response).to redirect_to(project_profile_path(project,profile))
+        it 'redirects to the updated @performance' do
+          put :update, { project_id: project.to_param, profile_id: profile.to_param, id: performance.to_param, performance: valid_attributes }, valid_session
+          expect(response).to redirect_to(project_profile_path(project, profile))
         end
       end
 
-      context "with invalid params" do
-        it "assigns the performance as @performance" do
-          put :update, {:project_id => project.to_param, :profile_id => profile.to_param, :id => performance.to_param, :performance => invalid_attributes}, valid_session
+      context 'with invalid params' do
+        it 'assigns the performance as @performance' do
+          put :update, { project_id: project.to_param, profile_id: profile.to_param, id: performance.to_param, performance: invalid_attributes }, valid_session
           expect(assigns(:performance)).to eq(performance)
         end
 
         it "re-renders the 'edit' template" do
-          put :update, {:project_id => project.to_param, :profile_id => profile.to_param, :id => performance.to_param, :performance => invalid_attributes}, valid_session
+          put :update, { project_id: project.to_param, profile_id: profile.to_param, id: performance.to_param, performance: invalid_attributes }, valid_session
           expect(response).to render_template('edit')
         end
       end
