@@ -41,12 +41,10 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.10'
 
-# A modern web server and application server for Ruby, Python and Node.js, 
-# optimized for performance, low memory usage and ease of use
-gem 'passenger'
-
-# Use Unicorn as the app server
-gem 'unicorn'
+# Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications. 
+# Puma is intended for use in both development and production environments. 
+# In order to get the best throughput, it is highly recommended that you use a Ruby implementation with real threads like Rubinius or JRuby.
+gem 'puma'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 3.5.2'
@@ -69,7 +67,7 @@ gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'less', '~> 2.6.0'
 
 # The dynamic stylesheet language for the Rails asset pipeline. Allows other gems to extend Less load path
-gem 'less-rails', '~> 2.7.0'
+gem 'less-rails', '~> 2.7.1'
 
 # Forms made easy!
 gem 'simple_form', '~> 3.2.0'
@@ -131,10 +129,10 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1.1'
 
   # RSpec for Rails
-  gem 'rspec-rails', '~> 3.3.3'
+  gem 'rspec-rails', '~> 3.5.1'
 
   # the instafailing RSpec progress bar formatter
-  gem 'fuubar', '~> 2.0.0'
+  gem 'fuubar', '~> 2.1.1'
 
   # factory_girl_rails provides integration between factory_girl and rails 3 (currently just automatic factory definition loading)
   gem 'factory_girl_rails', '~> 4.5.0'
