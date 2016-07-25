@@ -1,3 +1,7 @@
+[![Code Climate](https://codeclimate.com/github/imbrito/tcc-electretri/badges/gpa.svg)](https://codeclimate.com/github/imbrito/tcc-electretri)
+[![Test Coverage](https://codeclimate.com/github/imbrito/tcc-electretri/badges/coverage.svg)](https://codeclimate.com/github/imbrito/tcc-electretri/coverage)
+[![Build Status](https://travis-ci.org/imbrito/tcc-electretri.svg?branch=master)](https://travis-ci.org/imbrito/tcc-electretri)
+
 # Electre Tri App
 
 *Electre Tri App* é um sistema web de apoio à Decisão Multicritério, baseado no Algoritmo ELECTRE TRI. Trabalho de Conclusão do Curso de Bacharelado de Sistemas de Informação do Instituto Federal de Educação, Ciência e Tecnologia Fluminense, Campus Campos-Centro.

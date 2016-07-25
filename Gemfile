@@ -105,6 +105,9 @@ gem 'will_paginate-bootstrap', '~> 1.0.1'
 # Collects test coverage data from your Ruby test suite and sends it to Code Climate's hosted, automated code review service. Based on SimpleCov
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
+# Travis CI Client (CLI and Ruby library)
+gem 'travis'
+
 group :development, :test do
   # Automatic Ruby code style checking tool. Aims to enforce the community-driven Ruby Style Guide.
   gem 'rubocop', require: false
