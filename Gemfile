@@ -102,6 +102,9 @@ gem 'will_paginate', '~> 3.0.7'
 # This gem integrates the Twitter Bootstrap pagination component with the will_paginate pagination gem. Supports Rails and Sinatra
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 
+# Collects test coverage data from your Ruby test suite and sends it to Code Climate's hosted, automated code review service. Based on SimpleCov
+gem 'codeclimate-test-reporter', group: :test, require: nil
+
 group :development, :test do
   # Automatic Ruby code style checking tool. Aims to enforce the community-driven Ruby Style Guide.
   gem 'rubocop', require: false
