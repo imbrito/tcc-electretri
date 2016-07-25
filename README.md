@@ -1,5 +1,4 @@
 [![Code Climate](https://codeclimate.com/github/imbrito/tcc-electretri/badges/gpa.svg)](https://codeclimate.com/github/imbrito/tcc-electretri)
-[![Test Coverage](https://codeclimate.com/github/imbrito/tcc-electretri/badges/coverage.svg)](https://codeclimate.com/github/imbrito/tcc-electretri/coverage)
 [![Build Status](https://travis-ci.org/imbrito/tcc-electretri.svg?branch=master)](https://travis-ci.org/imbrito/tcc-electretri)
 
 # Electre Tri App
