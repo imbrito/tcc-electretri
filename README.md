@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/imbrito/tcc-electretri/badges/gpa.svg)](https://codeclimate.com/github/imbrito/tcc-electretri)
+[![Test Coverage](https://codeclimate.com/github/imbrito/tcc-electretri/badges/coverage.svg)](https://codeclimate.com/github/imbrito/tcc-electretri/coverage)
 [![Build Status](https://travis-ci.org/imbrito/tcc-electretri.svg?branch=master)](https://travis-ci.org/imbrito/tcc-electretri)
 
 # Electre Tri App
@@ -9,4 +10,4 @@
 
 O objetivo principal deste trabalho é modelar e desenvolver um sistema web implementando o algoritmo ELECTRE TRI, um dos principais algoritmos de análise multicritério baseado no conceito da classificação. Nele há critérios de avaliação que permitem definir alternativas que estarão em comparação, permitindo assim, estabelecer preferências entre as alternativas em análise, possibilitando atender as reais necessidades dos usuários que desejem classificar e ordenar alternativas no ambiente decisório multicritério, potencializar o custo benefício nas tomadas de decisão, onde dentro de uma escala e regra, o usuário poderá informar seus critérios e pesos, recebendo do sistema o indicativo da melhor opção ou classificação mediante os dados fornecidos.
 
-`Disponível em [electretri.heroku.com](electretri.heroku.com)`
+Disponível em [electretri.heroku.com](electretri.heroku.com)
