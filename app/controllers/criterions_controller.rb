@@ -60,11 +60,7 @@ class CriterionsController < ApplicationController
   end
 
   def create_performance_if_exists_profiles_or_alternatives
-    unless @project.profiles.empty?
-      @project.profiles.each { |profile| profile.performances.build(value: 0, criterion: @criterion).save }
-    end
-    unless @project.alternatives.empty?
-      @project.alternatives.each { |alternative| alternative.performances.build(value: 0, criterion: @criterion).save }
-    end
+    @project.profiles.each { |profile| profile.performances.build(value: 0, criterion: @criterion).save } unless @project.profiles.empty?
+    @project.alternatives.each { |alternative| alternative.performances.build(value: 0, criterion: @criterion).save } unless @project.alternatives.empty?
   end
 end

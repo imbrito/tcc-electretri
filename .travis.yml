@@ -10,7 +10,7 @@ script:
   - RAILS_ENV=test bundle exec rake spec
 addons:
   code_climate:
-    repo_token: eecc10fc2f909544fb513fb450761bc3a19e437215545cb9d5d91e4c6f689816
+    repo_token: $CODECLIMATE_REPO_TOKEN
 deploy:
   provider: heroku
   api_key:
