@@ -15,8 +15,5 @@
 # Ignore all fuse_hidden files
 .fuse_hidden*
 
-# Ignore all fuse_hidden files
-Gemfile.lock
-
 # Ignore development local envs
 /config/local_env.yml
