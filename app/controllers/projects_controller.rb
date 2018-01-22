@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description, :cut)
+    params.require(:project).permit(:name, :description, :cut, :flag)
   end
 
   def set_user

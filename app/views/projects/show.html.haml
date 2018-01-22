@@ -11,6 +11,9 @@
   %br
   = @project.description
 %p
+  %strong= model_class.human_attribute_name('Enable to veto?')
+  = @project.flag
+%p
   %strong= model_class.human_attribute_name(:cut) + ':'
   = @project.cut
 

@@ -3,6 +3,7 @@ FactoryGirl.define do
     name 'Hello World'
     description 'Pink and Brian, to domains the World!'
     cut 0.75
+    flag false
     association :user, factory: :user
   end
 

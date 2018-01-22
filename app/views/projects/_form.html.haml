@@ -4,6 +4,8 @@
 		= error_span(@project[:name])
 		= f.input :description
 		= error_span(@project[:description])
+		= f.input_field :flag, as: :boolean
+		= f.label('Enable to veto? ')
 		= f.input :cut, collection: Project::CUT
 		= error_span(@project[:cut])
 		= f.button :submit, :class => 'btn-primary'

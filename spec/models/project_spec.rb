@@ -15,6 +15,7 @@ RSpec.describe Project, type: :model do
     expect('Hello World').to eq(project.name)
     expect('Pink and Brian, to domains the World!').to eq(project.description)
     expect(0.75).to eq(project.cut)
+    expect(false).to eq(project.flag)
     expect('torvalds').to eq(project.user.password)
   end
 end
