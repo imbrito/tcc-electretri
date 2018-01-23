@@ -1,6 +1,8 @@
 .col-sm-6.col-md-4.col-md-offset-4
 	= simple_form_for [@project, @performable, @performance], :html => { :class => 'form-horizontal' } do |f|
+		= f.error :base
+		= f.error_notification
+
 		= f.input :value
-		= error_span(@performance[:value])
 		= f.button :submit, :class => 'btn-primary'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), polymorphic_url([@project, @performable]), :class => 'btn btn-default'

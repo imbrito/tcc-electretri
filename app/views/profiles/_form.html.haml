@@ -1,8 +1,9 @@
 .col-sm-6.col-md-4.col-md-offset-4
 	= simple_form_for [@project, @profile], :html => { :class => 'form-horizontal' } do |f|
+		= f.error :base
+		= f.error_notification
+
 		= f.input :name
-		= error_span(@profile[:name])
 		= f.input :description
-		= error_span(@profile[:description])
 		= f.button :submit, :class => 'btn-primary'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), project_path(@profile.project), :class => 'btn btn-default'

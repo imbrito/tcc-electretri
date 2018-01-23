@@ -1,16 +1,13 @@
 .col-sm-6.col-md-4.col-md-offset-4
   = simple_form_for([@project, @criterion], :html => { :class => 'form-horizontal' }) do |f|
+    = f.error :base
+    = f.error_notification
+    
     = f.input :name
-    = error_span(@criterion[:name])
     = f.input :weight, input_html: { min: 0 }
-    = error_span(@criterion[:weight])
     = f.input :preference, input_html: { min: 0 }
-    = error_span(@criterion[:preference])
     = f.input :indifference, input_html: { min: 0 }
-    = error_span(@criterion[:indifference])
     = f.input :veto, input_html: { min: 0 }
-    = error_span(@criterion[:veto])
     = f.input :direction, collection: %w[increasing decreasing], as: :radio_buttons, checked: 'increasing'
-    = error_span(@criterion[:direction])
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), project_path(@criterion.project), :class => 'btn btn-default'
